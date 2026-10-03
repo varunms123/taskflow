@@ -4,10 +4,9 @@ import { Ionicons } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import TaskCard from './TaskCard';
-import { useTheme } from '../../theme/ThemeContext';
-import { fontSize, fontWeight, radius } from '../../theme/layout';
+import { useTheme } from '../../themes/ThemeContext';
+import { fontSize, fontWeight, radius } from '../../themes/layout';
 
-// Swipe right -> complete / reopen.  Swipe left -> delete (with confirmation).
 export default function SwipeableTaskCard({ task, onPress, onToggle, onDelete }) {
   const { colors } = useTheme();
   const swipeRef = useRef(null);
