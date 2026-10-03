@@ -32,6 +32,16 @@ export default function DateField({ label, value, onChange, error }){
         onChange(toISODate(selected));
     }
 
+    const handleValueChange = (event, selected) => {
+        if(Platform.OS === 'android') setOpen(false);
+        if(!selected) return;
+        onChange(toISODate(selected));
+    }
+
+    const handleDismiss = () => {
+        if(Platform.OS === 'android') setOpen(false);
+    }
+    
     const borderColor = error ? colors.danger : open ? colors.primary : colors.border;
 
     return(
@@ -54,7 +64,8 @@ export default function DateField({ label, value, onChange, error }){
                         value={pickerValue}
                         mode="date"
                         display={Platform.OS === 'ios' ? 'inline' : 'default'}
-                        onChange={handleChange}
+                        onValueChange={handleValueChange}
+                        onDismiss={handleDismiss}
                         themeVariant={isDark ? 'dark' : 'light'}
                     />
                     {Platform.OS === 'ios' ? (
